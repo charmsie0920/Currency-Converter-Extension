@@ -8,27 +8,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const apiURL="https://api.api-ninjas.com/v1/exchangerate?pair=GBP_"
 
-convert.addEventListener('click', () => {
-    const amountTotal = amount.value;
-    const currencyTotal = currency.value;
-    const url = apiURL + currencyTotal;
+    convert.addEventListener('click', () => {
+        const amountTotal = amount.value;
+        const currencyTotal = currency.value;
+        const url = apiURL + currencyTotal;
 
-    fetch(url, {
-        headers: {
-            "X-Api-Key": API_KEY
-        }
+        fetch(url, {
+            headers: {
+                "X-Api-Key": API_KEY
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const rate = data.exchange_rate;
+            const resultPrice = amountTotal * rate;
+            result.innerHTML = `${amount} ${currency} = ${resultPrice.toFixed(2)} USD`;
+        })
+        .catch(error => {
+            console.error("Failed", error);
+            result.innerHTML = "An error occurred";
+        })
     })
-    .then(response => response.json())
-    .then(data => {
-        const rate = data.exchange_rate;
-        const resultPrice = amountTotal * rate;
-        result.innerHTML = `${amount} ${currency} = ${resultPrice.toFixed(2)} USD`;
-    })
-    .catch(error => {
-        console.error("Failed", error);
-        result.innerHTML = "An error occurred";
-    })
-})
 
 })
 
