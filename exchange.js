@@ -8,12 +8,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const API_KEY="Yo3wpLsMrrNSAwwu9zI6lA==JLjD8cuKTqlPDhM9"
 
-    const apiURL="https://api.api-ninjas.com/v1/exchangerate?pair=GBP_"
+    const apiURL="https://api.api-ninjas.com/v1/exchangerate?pair="
 
     convert.addEventListener('click', () => {
         const amountTotal = parseFloat(amount.value);
-        const currencyTotal = currency.value;
-        const url = apiURL + currencyTotal;
+        const baseCurrencyTotal = baseCurrency.value;
+        const targetCurrencyTotal = targetCurrency.value;
+        const url = apiURL + baseCurrencyTotal + "_" + targetCurrencyTotal;
 
         fetch(url, {
             headers: {
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log(data);
             const rate = data.exchange_rate;
             const resultPrice = amountTotal * rate;
-            result.innerHTML = `${amountTotal} ${currencyTotal} = ${resultPrice} GBP`;
+            result.innerHTML = `${amountTotal} ${baseCurrencyTotal} = ${resultPrice.toFixed(2)} ${targetCurrencyTotal}`;
 
         })
         .catch(error => {
