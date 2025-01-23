@@ -1,11 +1,12 @@
-const amount = document.getElementById('amount');
-const currency = document.getElementById('currency');
-const convert = document.getElementById('convert');
-const result = document.getElementById('result');
+document.addEventListener('DOMContentLoaded', function() {
+    const amount = document.getElementById('amount');
+    const currency = document.getElementById('currency');
+    const convert = document.getElementById('convert');
+    const result = document.getElementById('result');
 
-const API_KEY="Yo3wpLsMrrNSAwwu9zI6lA==JLjD8cuKTqlPDhM9"
+    const API_KEY="Yo3wpLsMrrNSAwwu9zI6lA==JLjD8cuKTqlPDhM9"
 
-const apiURL="https://api.api-ninjas.com/v1/exchangerate?pair=GBP_"
+    const apiURL="https://api.api-ninjas.com/v1/exchangerate?pair=GBP_"
 
 convert.addEventListener('click', () => {
     const amountTotal = amount.value;
@@ -29,5 +30,5 @@ convert.addEventListener('click', () => {
     })
 })
 
-
+})
 
